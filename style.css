@@ -1,3 +1,11 @@
+:root {
+    --suit-soldier-color: #e71e6f;
+    --shadow-suit-soldier-color: #c6175f;
+    --shadow-head-soldier-color: #5c0b2c;
+    --white-color: #ffffff;
+    --black-common: #1a1812;
+}
+
 body {
     background: #0c0c0c;
     height: 100vh;
@@ -6,7 +14,6 @@ body {
     justify-content: center;
     align-items: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    --suit-soldier-color: #e71e6f;
     min-width: 700px;
     min-height: 700px;
 }
@@ -23,12 +30,12 @@ body {
 }
 
 .card > * {
-    color: #1a1812;
+    color: var(--black-common);
 }
 
 .circle {
     border-radius: 50%;
-    border: 12px solid #1a1812;
+    border: 12px solid var(--black-common);
     width: 110px;
     height: 110px;
 }
@@ -42,7 +49,7 @@ body {
 }
 
 .triangle::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 20px;
     height: 20px;
@@ -52,13 +59,13 @@ body {
     transform: rotate(45deg) skew(10deg, 10deg);
     left: 1px;
     bottom: -13px;
-    color: #1a1812;
+    color: var(--black-common);
 }
 
 .square {
     width: 100px;
     height: 100px;
-    border: 12px solid #1a1812;
+    border: 12px solid var(--black-common);
 }
 
 .pulse {
@@ -109,21 +116,21 @@ body {
     display: none;
 }
 
-#soldier:target {
-    display: grid !important;
-}
-
 .soldier {
     display: none;
     width: 650px;
     height: 650px;
     border-radius: 50%;
-    border: 4px solid var(--suit-soldier-color);
+    border: 8px solid var(--suit-soldier-color);
     grid-template-rows: 55% 45%;
     overflow: hidden;
     justify-content: center;
     position: absolute;
-    background: #0d0d0d;
+    background: linear-gradient(to right, #78b8c3, #3a727a, #25474d);
+}
+
+#soldier:target {
+    display: grid;
 }
 
 .head-soldier {
@@ -139,7 +146,7 @@ body {
 }
 
 .shadow-head {
-    background: #5c0b2c;
+    background: var(--shadow-head-soldier-color);
     width: 249px;
     height: 94%;
     margin-top: 20px;
@@ -151,7 +158,7 @@ body {
 }
 
 .mask {
-    background: radial-gradient(#363434, #0a0a0a);
+    background: radial-gradient(#3e3e3e, #0a0a0a);
     width: 100%;
     height: 95%;
     border-radius: 50% 50% 50% 50% / 40% 40% 65% 65%;
@@ -169,44 +176,41 @@ body {
     position: relative;
     justify-content: center;
     display: flex;
-    z-index: 1;
 }
 
-.body-soldier::after {
-    content: '';
-    width: 130px;
-    transform: rotate(29deg);
-    right: 85px;
-    top: 40px;
-    position: absolute;
-    background: #c6175f;
-    height: 30px;
-    border-radius: 30px 30px 0 0px;
-}
-
+.body-soldier::after,
 .body-soldier::before {
     content: '';
     width: 130px;
-    transform: rotate(-29deg);
-    left: 85px;
     top: 40px;
     position: absolute;
-    background: #c6175f;
-    height: 30px;
-    border-radius: 30px 30px 0 0px;
+    height: 14px;
+    background: var(--shadow-suit-soldier-color);
+    border-bottom-left-radius: 100%;
+    border-top-right-radius: 100%;
+}
+
+.body-soldier::after {
+    transform: rotate(28deg);
+    right: 75px;
+}
+
+.body-soldier::before {
+    transform: rotate(-36deg);
+    left: 75px;
 }
 
 .grip {
     position: absolute;
     height: 110%;
     width: 24px;
-    background: #0a0a0a;
+    background: var(--black-common);
     display: flex;
     justify-content: center;
 }
 
 .grip::before {
-    content: "";
+    content: '';
     display: block;
     background: #777;
     width: 2%;
@@ -216,36 +220,37 @@ body {
 .pocket {
     width: 15%;
     height: 30%;
-    border: 6px solid #c6175f;
+    border: 6px solid var(--shadow-suit-soldier-color);
     position: absolute;
     right: 120px;
     bottom: 0;
 }
 
+.pocket::after,
 .pocket::before {
     content: '';
-    width: 100%;
-    background: #c6175f;
-    top: 36px;
+    background: var(--shadow-suit-soldier-color);
     position: absolute;
+}
+
+.pocket::before {
+    width: 100%;
+    top: 36px;
     height: 4px;
 }
 
 .pocket::after {
-    content: '';
     border-radius: 60%;
     width: 14px;
     height: 14px;
     right: 36px;
-    background: #c6175f;
     top: 15px;
-    position: absolute;
 }
 
 .symbol {
-    width: 80px;
-    height: 80px;
-    border: 8px solid #ffffff;
+    width: 90px;
+    height: 90px;
+    border: 8px solid var(--white-color);
     transform-style: preserve-3d;
     transform: rotateX(8deg);
 }
@@ -268,16 +273,9 @@ body {
     gap: 4px;
 }
 
-.mouth-mask::after {
-    content: "";
-    display: block;
-    background: #777;
-    width: 2%;
-    height: 100%;
-}
-
+.mouth-mask::after,
 .mouth-mask::before {
-    content: "";
+    content: '';
     display: block;
     background: #777;
     width: 2%;
@@ -285,8 +283,8 @@ body {
 }
 
 .created-by {
-    position: absolute;
-    bottom: 1.5rem;
+    position: fixed;
+    bottom: 1rem;
 }
 
 .created-by * {
